@@ -31,11 +31,12 @@ const CustomHeader = () => {
   return (
     <Header style={{ display: "flex", alignItems: "center" }}>
       <Menu
-        onClick={() => handleClick}
-        selectedKeys={[selectedKey]}
+        theme="dark"
         mode="horizontal"
         items={menuItems}
-      ></Menu>
+        style={{ flex: 1, minWidth: 0 }}
+        onClick={handleClick}
+      />
     </Header>
   );
 };
