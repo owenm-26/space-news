@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import { Article } from "@/types/types";
+import type { TableColumnsType } from "antd";
 
 interface ArticleTableProps {
   articles: Article[];
@@ -15,8 +16,35 @@ const ArticleTable: React.FC<ArticleTableProps> = ({ articles, loading }) => {
    * You will need to write a custom render function for the "published_at" column to format the date.
    *
    */
+  const columns: TableColumnsType<Article> = [
+    {
+      title: "Title",
+      dataIndex: "title",
+    },
+    {
+      title: "News Source",
+      dataIndex: "news_source",
+    },
+    {
+      title: "Published At",
+      dataIndex: "published_at",
+    },
+  ];
 
-  return <div>Build me</div>;
+  // for (let i = 0; i < 100; i++) {
+  //   articles.push({
+  //     key: i,
+  //     title: {article.title}
+  // }
+
+  return (
+    <Table
+      columns={columns}
+      dataSource={articles}
+      pagination={{ pageSize: 10 }}
+      scroll={{ y: 240 }}
+    />
+  );
 };
 
 export default ArticleTable;

@@ -26,7 +26,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
       day: "numeric",
     };
     const formatted = d.toLocaleDateString("en-US", options);
-    console.log(formatted);
     return formatted;
   }
   return (

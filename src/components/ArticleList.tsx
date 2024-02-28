@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Row, Skeleton } from "antd";
 import { Article } from "@/types/types";
-import ArticleCard from "./ArticleCard";
+import ArticleCard from "@/components/ArticleCard";
 
 // You'll need to replace undefined with the correct type
-const ArticleList: React.FC<undefined> = () => {
+const ArticleList: React.FC<Article[]> = ({ news }: Article[]) => {
   /**
    * This component renders a list of articles. It takes as input an array of articles and a boolean indicating whether the list is loading.
    * You will need to write a props interface for this component.
@@ -15,7 +15,15 @@ const ArticleList: React.FC<undefined> = () => {
    * Don't forget to add a Skeleton component for when the list is loading. You might need conditional render logic for this
    *
    */
-  return <div>Build me</div>;
+  return (
+    <>
+      <Row>
+        {news.map(function (data: Article, idx: number) {
+          return <ArticleCard key={idx} article={data} />;
+        })}
+      </Row>
+    </>
+  );
 };
 
 export default ArticleList;

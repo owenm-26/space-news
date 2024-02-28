@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { Divider, Typography, theme, Col, Row } from "antd";
-import { Article } from "./Interfaces";
-import ArticleList from "./ArticleList";
+import { Article } from "@/types/types";
+// import ArticleList from "./ArticleList";
+import ArticleList from "@/components/ArticleList";
+
 
 const NewsPage: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]); // list of articles
