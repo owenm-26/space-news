@@ -1,6 +1,6 @@
+import ArticleCard from "@/components/ArticleCard";
 import { Article, Launch } from "./Interfaces";
 import { Divider, Typography, theme, Col, Row } from "antd";
-import ArticleCard from "./ArticleCard";
 
 const ArticleList = ({ news }: { news: Article[] }) => {
   return (

@@ -1,16 +1,71 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { Card, Row, Col, Typography, Divider } from "antd";
+import { Card, Row, Col, Typography, Divider, theme } from "antd";
 import { Article } from "@/types/types";
 // This gets you access to the image for 404 fallback.
 // The href/source/url can be retrieved via image404.src
 import image404 from "../assets/404.png";
+const { Title, Text } = Typography;
 
 interface ArticleCardProps {
   article: Article;
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => (
+const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
+  //get theme
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
+  function makeDate(date: string) {
+    const d = new Date(date);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const formatted = d.toLocaleDateString("en-US", options);
+    console.log(formatted);
+    return formatted;
+  }
+  return (
+    <Col span={8}>
+      <a href={article.url}>
+        <Card
+          title={article.title}
+          bordered={false}
+          hoverable
+          style={{
+            background: colorBgContainer,
+            minHeight: 280,
+            padding: 0,
+            borderRadius: borderRadiusLG,
+            justifyContent: "center",
+            margin: 5,
+          }}
+          cover={getImage(article.image_url)}
+          extra={makeDate(article.published_at)}
+        >
+          <Title level={4} underline>
+            {article.title}
+          </Title>
+
+          <Divider />
+          <Text>{article.summary}</Text>
+        </Card>
+      </a>
+    </Col>
+  );
+
+  function getImage(url: string) {
+    if (url) {
+      return <img width="100%" src={article.image_url} alt="none" />;
+    } else {
+      return <img src={image404.src} alt="error-image"></img>;
+    }
+  }
+};
   /**
    * This component renders a single article. It takes as input an article object.
    * You should read the Antd documentation to figure out how to build this.
@@ -28,7 +83,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => (
    *
    * Don't forget that you need to add a unique key prop to each ArticleCard.
    */
-  <div>build me</div>
-);
+
 
 export default ArticleCard;
