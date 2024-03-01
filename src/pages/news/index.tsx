@@ -35,6 +35,7 @@ const NewsPage: React.FC = () => {
     const newOffset = (page - 1) * pageSize; // Calculate the new offset correctly
     console.log("new offset: " + newOffset);
     setOffset(newOffset); // Set the new offset
+    scrollToTop();
   };
 
   //change page length
