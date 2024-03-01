@@ -4,6 +4,7 @@ import { Divider, Typography, theme, Col, Row, Switch, Pagination } from "antd";
 import { Article } from "@/types/types";
 import ArticleList from "@/components/ArticleList";
 import ArticleTable from "@/components/ArticleTable";
+import ArticleStatistics from "@/components/ArticleStatistics";
 
 const NewsPage: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]); // list of articles
@@ -56,7 +57,6 @@ const NewsPage: React.FC = () => {
     <>
       {/* You can delete this div if you want */}
       <div style={{ marginBottom: "10px" }}>{/* Add Switch inside here */}</div>
-      <Divider />
       <div style={{ display: "flex" }}>
         <div style={{ marginRight: "10px" }}>View as:</div>
         <div style={{ marginRight: "10px" }}>
@@ -69,6 +69,9 @@ const NewsPage: React.FC = () => {
         </div>
         <span>(Switch between Table and Grid view)</span>
       </div>
+      <ArticleStatistics articles={articles} count={count} />
+      <Divider />
+
       <Typography.Title level={1}>Articles</Typography.Title>
       {isList ? (
         <ArticleList news={articles} />

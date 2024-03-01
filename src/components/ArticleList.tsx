@@ -27,16 +27,6 @@ const ArticleList: React.FC<ArticleListProps> = ({ news }) => {
           return <ArticleCard key={idx} article={data} />;
         })}
       </Row>
-      {/* <Pagination
-        total={news.length}
-        defaultCurrent={10}
-        pageSize={limit}
-        showSizeChanger
-        onChange={onPageChange}
-        onShowSizeChange={onShowSizeChange}
-        current={offset}
-        style={{ marginTop: "16px", textAlign: "center" }}
-      /> */}
     </>
   );
 };

@@ -1,12 +1,17 @@
 import React from "react";
 import { Row, Col, List, Typography } from "antd";
 import { Article } from "@/types/types";
+const { Title, Text } = Typography;
 
 interface ArticleStatisticsProps {
   articles: Article[];
+  count: number;
 }
 
-const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
+const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({
+  articles,
+  count,
+}) => {
   /**
    * This component generates the following statistics:
    * 1. Unique news sources
@@ -43,7 +48,72 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
     ).toLocaleDateString(),
   ];
 
-  return <div>Build me</div>;
+  const dateString = ["Earliest: " + dateRange[0], "Latest: " + dateRange[1]];
+
+  return (
+    <div>
+      <Title>Article Statistics</Title>
+      <Row>
+        <Col span={8}>
+          <List
+            size="large"
+            header={
+              <Text>
+                <b>Unique Sources</b>
+              </Text>
+            }
+            footer={false}
+            style={{ margin: 5 }}
+            bordered
+            dataSource={uniqueSources}
+            renderItem={(item) => (
+              <List.Item>
+                <Text>{item}</Text>
+              </List.Item>
+            )}
+          />
+        </Col>
+        <Col span={8}>
+          <List
+            size="large"
+            header={
+              <Text>
+                <b>Date Range of Articles</b>
+              </Text>
+            }
+            footer={false}
+            bordered
+            style={{ margin: 5 }}
+            dataSource={dateString}
+            renderItem={(item) => (
+              <List.Item>
+                <Text>{item}</Text>
+              </List.Item>
+            )}
+          />
+        </Col>
+        <Col span={8}>
+          <List
+            size="large"
+            header={
+              <Text>
+                <b>Number of Featured Articles</b>
+              </Text>
+            }
+            footer={false}
+            bordered
+            style={{ margin: 5 }}
+            dataSource={["Count: " + count]}
+            renderItem={(item) => (
+              <List.Item>
+                <Text>{item}</Text>
+              </List.Item>
+            )}
+          />
+        </Col>
+      </Row>
+    </div>
+  );
 };
 
 export default ArticleStatistics;
